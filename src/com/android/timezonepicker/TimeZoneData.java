@@ -240,7 +240,7 @@ public class TimeZoneData {
         for (TimeZoneInfo tz : mTimeZones) {
             // All
             if (false) {
-                Log.e(TAG, "ALL: " + tz.toString());
+                Log.e(TAG, "ALL: " + tz.mCountry + " " + tz.toString());
             }
 
             // GMT
