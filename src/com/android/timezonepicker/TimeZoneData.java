@@ -240,14 +240,14 @@ public class TimeZoneData {
         for (TimeZoneInfo tz : mTimeZones) {
             // All
             if (false) {
-                Log.e("ALL", tz.toString());
+                Log.e(TAG, "ALL: " + tz.toString());
             }
 
             // GMT
             if (true) {
                 String name = tz.mTz.getDisplayName();
                 if (name.startsWith("GMT") && !tz.mTzId.startsWith("Etc/GMT")) {
-                    Log.e("GMT", tz.toString());
+                    Log.e(TAG, "GMT: " + tz.toString());
                 }
             }
 
@@ -255,10 +255,10 @@ public class TimeZoneData {
             if (true && last != null) {
                 if (last.compareTo(tz) == 0) {
                     if (first) {
-                        Log.e("SAME", last.toString());
+                        Log.e(TAG, "SAME: " + last.toString());
                         first = false;
                     }
-                    Log.e("SAME", tz.toString());
+                    Log.e(TAG, "SAME: " + tz.toString());
                 } else {
                     first = true;
                 }
