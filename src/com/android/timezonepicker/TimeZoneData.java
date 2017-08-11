@@ -119,6 +119,9 @@ public class TimeZoneData {
         mTimeZones = new ArrayList<TimeZoneInfo>();
         HashSet<String> processedTimeZones = loadTzsInZoneTab(context);
         String[] tzIds = TimeZone.getAvailableIDs();
+        final String lang = Locale.getDefault().getLanguage();
+        final String world_code = "001";
+        final String world_country = getCountryNames(lang, world_code);
 
         if (DEBUG) {
             Log.e(TAG, "Available time zones: " + tzIds.length);
@@ -144,7 +147,11 @@ public class TimeZoneData {
                 continue;
             }
 
-            TimeZoneInfo tzInfo = new TimeZoneInfo(tz, null);
+            // Remember the mapping between the country code and display name
+            if (mCountryCodeToNameMap.get(world_code) == null) {
+                mCountryCodeToNameMap.put(world_code, world_country);
+            }
+            TimeZoneInfo tzInfo = new TimeZoneInfo(tz, world_country);
 
             if (getIdenticalTimeZoneInTheCountry(tzInfo) == -1) {
                 if (DEBUG) {
